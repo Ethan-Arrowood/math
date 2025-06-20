@@ -8,7 +8,9 @@ const observer = new PerformanceObserver((list) => {
 	const percentChange =
 		(bruteForce.duration - optimized.duration) / bruteForce.duration;
 
-	console.log(`The optimized solution was ${(percentChange * 100).toFixed(2)}% faster`);
+	console.log(
+		`The optimized solution was ${(percentChange * 100).toFixed(2)}% faster`,
+	);
 });
 
 observer.observe({ type: 'measure', buffered: true });
@@ -43,16 +45,14 @@ function optimized() {
 			for (let c = 0; c <= 9; c++) {
 				let k = 9091 * a + 910 * b + 100 * c;
 				for (let r = 10; r <= 90; r++) {
-					// if (k % r === 0) {
-						const m = k / r;
-						if (Number.isInteger(m) && m >= 100 && m <= 999) {
-							const palindrome = 11 * k;
+					const m = k / r;
+					if (Number.isInteger(m) && m >= 100 && m <= 999) {
+						const palindrome = 11 * k;
 
-							if (palindrome > largestPalindrome) {
-								largestPalindrome = palindrome;
-							}
+						if (palindrome > largestPalindrome) {
+							largestPalindrome = palindrome;
 						}
-					// }
+					}
 				}
 			}
 		}
