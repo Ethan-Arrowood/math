@@ -319,7 +319,8 @@ This post was inspired by the
 series of posts exploring mathematical problem solving techniques in
 programming.
 
-You can find the complete code for this solution [here](https://github.com/Ethan-Arrowood/math/blob/main/project-euler/04-largest-palindrome-product/index.js).
+You can find the complete code for this solution
+[here](https://github.com/Ethan-Arrowood/math/blob/main/project-euler/04-largest-palindrome-product/index.js).
 
 If you enjoyed this post, please consider sharing.
 
