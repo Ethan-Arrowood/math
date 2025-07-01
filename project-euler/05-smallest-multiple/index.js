@@ -1,9 +1,9 @@
-import { factor } from '../../utilities/factorization/factor.js';
+import { primeFactor } from '../../utilities/primes/primeFactor.js';
 
 function smallestMultiple(low, high) {
 	const maxPowersOfPrimes = new Map();
 	for (let i = low; i <= high; i++) {
-		const factors = factor(i);
+		const factors = primeFactor(i);
 		for (const [prime, power] of factors.entries()) {
 			if (power > (maxPowersOfPrimes.get(prime) || 0)) {
 				maxPowersOfPrimes.set(prime, power);

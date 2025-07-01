@@ -18,13 +18,15 @@ export function* primeGenerator({ limit = Number.MAX_SAFE_INTEGER, count = Numbe
 	return null;
 }
 
-// await pipeline(
-// 	primeGenerator({ count: 100_000 }),
-// 	new Transform({
-// 		objectMode: true,
-// 		transform(chunk, encoding, callback) {
-// 			callback(null, chunk ? `${chunk}\n` : chunk);
-// 		}
-// 	}),
-// 	createWriteStream(primesTxt)
-// );
+if (import.meta.main) {
+	await pipeline(
+		primeGenerator({ count: 100_000 }),
+		new Transform({
+			objectMode: true,
+			transform(chunk, encoding, callback) {
+				callback(null, chunk ? `${chunk}\n` : chunk);
+			}
+		}),
+		createWriteStream(primesTxt)
+	);
+}

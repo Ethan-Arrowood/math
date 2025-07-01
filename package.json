@@ -1,0 +1,6 @@
+{
+	"name": "math",
+	"private": true,
+	"description": "A collection of mathematics related programming by Ethan Arrowood",
+	"type": "module"
+}
