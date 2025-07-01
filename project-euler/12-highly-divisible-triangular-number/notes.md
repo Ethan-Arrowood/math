@@ -77,8 +77,7 @@ $$
 50 &= 2^1 \times 5^2 \\
 &= \{2,5,5\} \\
 & 2 \times 5 = 10 \\
-& 5 \times 5 = 25 \\
-
+& 5 \times 5 = 25
 \end{aligned}
 $$
 
@@ -109,7 +108,7 @@ $$
 (0,2) &\rightarrow 2^0 \times 5^2 = 25 \\
 (1,0) &\rightarrow 2^1 \times 5^0 = 2 \\
 (1,1) &\rightarrow 2^1 \times 5^1 = 10 \\
-(1,2) &\rightarrow 2^1 \times 5^2 = 50 \\
+(1,2) &\rightarrow 2^1 \times 5^2 = 50
 \end{aligned}
 $$
 
