@@ -2,5 +2,11 @@
 	"name": "math",
 	"private": true,
 	"description": "A collection of mathematics related programming by Ethan Arrowood",
-	"type": "module"
+	"type": "module",
+	"scripts": {
+		"format": "prettier --write ."
+	},
+	"dependencies": {
+		"prettier": "^3.6.2"
+	}
 }

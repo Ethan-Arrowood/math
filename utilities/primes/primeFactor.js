@@ -2,7 +2,7 @@ import { primeSet } from './primeSet.js';
 
 const memo = new Map();
 
-export function primeFactor (n) {
+export function primeFactor(n) {
 	const factors = new Map();
 
 	if (n <= 0) {

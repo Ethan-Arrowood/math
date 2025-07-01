@@ -15,21 +15,22 @@ a = -2000/-2 * (b - 500)/(b-1000)
 a = 1000(b-500)/(b-1000)
 */
 
-function f (b) {
-	return 1000 * (( b - 500 ) / (b - 1000))
+function f(b) {
+	return 1000 * ((b - 500) / (b - 1000));
 }
 
 for (let b = 1; b < 1000; b++) {
-	let a = f(b)
+	let a = f(b);
 	if (a > 0 && Number.isInteger(a)) {
-		console.log(`(${a},${b})`)
+		console.log(`(${a},${b})`);
 	}
 }
 
-let a = 375, b = 200
+let a = 375,
+	b = 200;
 
 let c = 1000 - a - b;
 
-console.log(`(${a},${b},${c})`)
+console.log(`(${a},${b},${c})`);
 
-console.log(a*b*c)
+console.log(a * b * c);

@@ -1,21 +1,25 @@
-import { factor, factorBigInt } from '../../utilities/factor.js'
+import { primeFactor } from '../../utilities/primes/primeFactor.js';
 
-for (let i = 1; i <= 100; i++) {
-	let t = 0;
-	for (let j = 0; j <= i; j++) {
-		t+=j;
+function countDivisors(n) {
+	const primeFactors = primeFactor(n);
+	let divisors = 1;
+	for (const [, power] of primeFactors) {
+		divisors *= power + 1;
 	}
-	console.log(`${i}: ${t}: ${Array.from(factor(t))}`)
+	return divisors;
 }
 
-let n = 1n;
+let n = 1;
 while (true) {
-	let t = (n*(n+1n))/2n
-	const f = factorBigInt(t);
-	if (f.size > 5) {
-		console.log(n, t);
+	let t = (n * (n + 1)) / 2;
+	if (2 * Math.sqrt(t) < 500) {
+		n++;
+		continue;
+	}
+	const f = countDivisors(t);
+	if (f > 500) {
+		console.log(`n: ${n}, t: ${t}`);
 		break;
 	}
 	n++;
 }
-
