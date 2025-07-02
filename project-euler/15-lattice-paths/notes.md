@@ -201,15 +201,6 @@ Thus, $N(n) = N(n-1) + 2n + 1$.
 The key here is you gain $2n + 1$ new nodes in the next graph, which is the
 number of nodes in the new row and column added to the previous graph.
 
-I can tell I'm super close to solving this; there is something to this
-encapsulation and iteration relationship that I think will let me derive a
-formula for $P(n)$ based on previous values. We have a lot of useful formulas
-here. I think there must be someway we can express $P(n)$ in terms of $P(n-1)$,
-$N(n)$, and $E(n)$. Maybe we can use the reflection formulas too, but my
-intuition tells me thats not as important here. It'll likely be more of an
-identity thing, such as whatever the formula is divided by 2 or square rooted
-will wind up revealing a reflection formula.
-
 What about edges? Can we find $E(n)$ in terms of $E(n-1)$?
 
 Given $E(n) = 2n(n+1)$, we can express this in terms of $E(n-1)$:
@@ -222,11 +213,81 @@ Thus, $E(n) = E(n-1) + 4n$
 
 Now we have both $N(n)$ and $E(n)$ in terms of their previous values.
 
+I can tell I'm super close to solving this; there is something to this
+encapsulation and iteration relationship that I think will let me derive a
+formula for $P(n)$ based on previous values. We have a lot of useful formulas
+here. I think there must be someway we can express $P(n)$ in terms of $P(n-1)$,
+$N(n)$, and $E(n)$. Maybe we can use the reflection formulas too, but my
+intuition tells me thats not as important here. It'll likely be more of an
+identity thing, such as whatever the formula is divided by 2 or square rooted
+will wind up revealing a reflection formula.
+
+So taking a step back, even though I have all these formulas, I need to look at
+the graphs again and think about degrees and the length of the paths. It seems
+that for $n=1$, every path has a length of $2$, for $n=2$ every path has a
+length of $4$. Does the length remain the same for $n=3$ as well? Yes! Every
+path has a length of $6$. To generalize this, every path from $(0,0)$ to $(n,n)$
+has a length of $2n$. Moreover, every path consists of exactly $n$ moves right
+and $n$ moves down. So how many ways can I arrange right and down moves in a
+sequence of length $2n$? This is a combinatorial problem, and I can use the
+binomial coefficient!
+
+$$
+\begin{aligned}
+C(n,k) &= \frac{n!}{k!(n-k)!} \\
+C(2n,n) &= \frac{(2n)!}{n!(2n-n)!} \\
+&= \frac{(2n)!}{n!n!} \\
+&= \frac{(2n)!}{(n!)^2}
+\end{aligned}
+$$
+
+Lets try this with the values we have so far:
+
+| $n$ | $C(2n,n)$ |
+| --- | --------- |
+| 1   | 2         |
+| 2   | 6         |
+| 3   | 20        |
+
+I think $P(n) = C(2n,n)$ is the formula we are looking for! Lets try it for
+$n=4$: $C(8,4) = \frac{8!}{4!4!} = \frac{40320}{24 \cdot 24} = 70$
+
+Now what about $n=20$?
+
 <details>
 <summary>Answer (click to reveal)</summary>
 
-</details>
-
-TODO
+$C(40,20) = \frac{40!}{20!20!} = 137846528820$
 
 </details>
+
+The calculator on my computer was able to handle the factorials without issue,
+but in a programming language like JavaScript, I'd likely need to use a
+different data type such as `BigInt`.
+
+```javascript
+function factorial(n) {
+	let result = 1n;
+	if (n === 0 || n === 1) return result;
+	for (let i = 2n; i <= n; i++) {
+		result *= i;
+	}
+	return result;
+}
+function binomialCoefficient(n, k) {
+	return factorial(n) / (factorial(k) * factorial(n - k));
+}
+
+const result = binomialCoefficient(40, 20);
+console.log(result.toString());
+```
+
+So all in all, the solution to this problem was actually a lot easier to derive.
+I'm sure there might be a way to write this in regards to the nodes and edges,
+but the combinatorial approach is much more straightforward. Recognizing early
+that this graph was a binary tree likely would have helped. One aspect to this
+is that I don't necessarily apply combinatorial mathematics easily; its not
+something I'm overly familiar with. With some further research the main take
+away here is I should always associate "number of ways" or "paths" with
+combinatorial mathematics. I think this is a good lesson to take away from this
+problem.
