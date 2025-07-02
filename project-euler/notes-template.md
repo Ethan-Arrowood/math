@@ -1,6 +1,6 @@
-# Project Euler Problem xx:
+# [Project Euler Problem %n%: %t%](https://projecteuler.net/problem=%n%)
 
-> https://projecteuler.net/problem=xx
+%p%
 
 <details>
 <summary>Answer (click to reveal)</summary>
